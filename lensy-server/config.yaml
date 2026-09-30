@@ -2,7 +2,7 @@
 # (ghcr.io/hannahmwright/lensy-server, published by .github/workflows/server-image.yml), and `version` must match
 # one of that image's tags: bump both together (server/package.json version and a server-v<version> tag).
 name: Lensy Server
-version: "0.4.0"
+version: "0.5.0"
 slug: lensy_server
 description: Lensy's companion for Frigate. Alerts, guest passes, Home Assistant rooms and the camera watchdog.
 url: https://github.com/hannahmwright/lensy-server-releases
