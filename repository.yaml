@@ -1,0 +1,5 @@
+# The app repository users add in Home Assistant (Settings → Apps → App store → ⋮ → Repositories). This file and the
+# lensy-server folder go at the root of the public releases repository (Server/packaging/public/publish.sh).
+name: Lensy
+url: https://github.com/hannahmwright/lensy-server-releases
+maintainer: Verve Technologies

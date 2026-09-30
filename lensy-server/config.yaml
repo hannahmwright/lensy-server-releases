@@ -1,0 +1,33 @@
+# Lensy Server as a Home Assistant app (formerly "add-on"). It runs the same image as Docker
+# (ghcr.io/hannahmwright/lensy-server, published by .github/workflows/server-image.yml), and `version` must match
+# one of that image's tags: bump both together (server/package.json version and a server-v<version> tag).
+name: Lensy Server
+version: "0.4.0"
+slug: lensy_server
+description: Lensy's companion for Frigate. Alerts, guest passes, Home Assistant rooms and the camera watchdog.
+url: https://github.com/hannahmwright/lensy-server-releases
+arch:
+  - amd64
+  - aarch64
+image: ghcr.io/hannahmwright/lensy-server
+startup: application
+boot: auto
+
+# Host networking: Lensy finds the server on the Wi-Fi (mDNS), and Wi-Fi-only guest passes work on port 3219.
+# The public side (3218, for a tunnel) stays on 127.0.0.1.
+host_network: true
+
+# The Lensy panel in the sidebar: the pairing code, then the status checklist. Admins only (the code pairs the server).
+ingress: true
+ingress_port: 0
+panel_icon: mdi:cctv
+panel_title: Lensy
+panel_admin: true
+
+# Home Assistant rooms without a long-lived token, and finding Frigate's app. The default role only reads apps' info.
+homeassistant_api: true
+hassio_api: true
+hassio_role: default
+
+# The database (/data/lensy.sqlite) is SQLite; a cold backup stops the app for a moment so the copy is consistent.
+backup: cold

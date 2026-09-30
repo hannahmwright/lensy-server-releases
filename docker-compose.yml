@@ -1,0 +1,23 @@
+# Lensy Server in Docker, set up the same way as the Windows app: start it, then pair it from Lensy.
+#
+#   1. Pick any six digits for LENSY_SETUP_CODE below.
+#   2. docker compose up -d
+#   3. In Lensy: Settings → Manage Frigate → Lensy Server, choose this server, and enter the same six digits.
+#
+# Everything else (Frigate, the camera watchdog, guest passes, Home Assistant) is set up in Lensy. Pairing finds
+# Frigate on this machine (port 8971) or at the address Lensy uses, and creates its own Frigate account.
+#
+# Host networking lets Lensy find the server on your Wi-Fi. Without it (e.g. Docker Desktop on a Mac), remove
+# network_mode, add `ports: ["3219:3219"]`, and in Lensy choose "Enter an address instead": http://<this machine>:3219
+services:
+  lensy-server:
+    image: ghcr.io/hannahmwright/lensy-server:latest
+    container_name: lensy-server
+    restart: unless-stopped
+    network_mode: host
+    environment:
+      - LENSY_SETUP_CODE=
+      # The public side (3218) stays on this machine, for a tunnel such as cloudflared. Only 3219 faces the network.
+      - LENSY_BIND_HOST=127.0.0.1
+    volumes:
+      - ./lensy-data:/data
