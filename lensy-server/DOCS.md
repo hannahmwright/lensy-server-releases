@@ -18,7 +18,7 @@ The **Lensy** panel then shows a checklist of what's working. Everything else is
 
 ## Home Assistant rooms
 
-The app connects to this Home Assistant by itself, so you don't need a long-lived access token. In Lensy, choose a camera's room and the devices to show with it. To use a different Home Assistant, set it up in Lensy; that replaces this one.
+The app connects to this Home Assistant by itself, so you don't need a long-lived access token. In Lensy, choose a camera's room and the devices to show with it. To use a different Home Assistant, set it up in Lensy; that replaces this one. Its connection can use all of Home Assistant, like an admin's token; Lensy itself only reads the rooms you set up and works the devices you chose, and only ever lights, switches, fans, scenes and scripts. Any Frigate user who can see a camera can use its room's devices, so leave out scripts and switches that open doors or gates.
 
 ## Network
 
